@@ -1,8 +1,8 @@
-import { useState, useEffect, useMemo } from "react"
-import { queryShowEpisodes, selected$, episodes$, cast$, queryShowCast } from "../store";
-import { CastMemberInfo, EpisodeInfo, ShowInfo } from "../types";
-import { Typography, Box, Container, Link } from '@mui/material';
+import { useEffect, useMemo, useState } from "react";
 import parse from 'html-react-parser';
+import { Box, Link, Typography } from '@mui/material';
+import { cast$, episodes$, queryShowCast, queryShowEpisodes, selected$ } from "../store";
+import { CastMemberInfo, EpisodeInfo, ShowInfo } from "../types";
 import { CollapsibleBox } from "./UI/Collapsible";
 import { Rating } from "./UI/Rating";
 
@@ -42,8 +42,6 @@ export const ShowDetails = () => {
     if (!show) {
         return null
     }
-
-    console.log(show)
 
     return <Box
         sx={{
@@ -136,12 +134,6 @@ export const ShowDetails = () => {
                         </CollapsibleBox>
                     )}
                 </CollapsibleBox >
-
-
-
-
-
-
                 <CollapsibleBox
                     sx={{
                         width: '100%',
@@ -158,11 +150,12 @@ export const ShowDetails = () => {
                         }}
                     >
                         {cast.map((castMember) =>
-                            <Box sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: 2
-                            }}>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: 2
+                                }}>
                                 {
                                     castMember.person.image &&
                                     <img
@@ -191,14 +184,9 @@ export const ShowDetails = () => {
                                     {`${castMember.person.name} - ${castMember.character.name}`}
                                 </Typography>
                             </Box>
-
                         )}
                     </Box>
                 </CollapsibleBox>
-
-
-
-
             </>
         }
     </Box>

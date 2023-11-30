@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { queryShow, searchShows$, selected$ } from "../store";
 import { ShowInfo } from "../types";
 import { Paper, List, InputBase, ListItem, Typography, CardActionArea, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 export const Search = () => {
-
   const [search, setSearch] = useState("")
   const [shows, setShows] = useState<ShowInfo[]>([])
 
@@ -18,15 +17,15 @@ export const Search = () => {
     queryShow(search);
   }, [search])
 
-  const handleSearch = (text: string) => {
+  const handleSearch = useCallback((text: string) => {
     setSearch(text);
-  }
+  }, [])
 
-  const handleSelection = (show: ShowInfo) => {
+  const handleSelection = useCallback((show: ShowInfo) => {
     selected$.next(show)
     searchShows$.next([])
     setSearch('')
-  }
+  }, [])
 
   return (
     <Box
@@ -54,17 +53,17 @@ export const Search = () => {
       </Paper>
       {shows.length > 0 &&
         <Paper
-        sx={{
-          position: 'absolute',
-          width: 600,
-          margin: 'auto'
-        }}
+          sx={{
+            position: 'absolute',
+            width: 600,
+            margin: 'auto'
+          }}
         >
           <List>
             {shows.map(show =>
-              <CardActionArea 
-              onClick={() => handleSelection(show)} 
-              key={show.show.id}
+              <CardActionArea
+                onClick={() => handleSelection(show)}
+                key={show.show.id}
               >
                 <ListItem key={show.show.id}>
                   {

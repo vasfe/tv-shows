@@ -1,5 +1,3 @@
-import React from 'react';
-import './App.css';
 import { Search } from './components/Search';
 import { ShowDetails } from './components/ShowDetails';
 import { Container } from '@mui/material';

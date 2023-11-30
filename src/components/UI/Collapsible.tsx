@@ -1,5 +1,5 @@
-import { Card, IconButton, Collapse, Container, SxProps, Typography, Box } from '@mui/material';
 import { useState } from 'react';
+import { Card, IconButton, Collapse, Container, SxProps, Typography, Box } from '@mui/material';
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
@@ -12,9 +12,7 @@ type CollapsibleBoxProps = {
 
 export const CollapsibleBox = (props: CollapsibleBoxProps): JSX.Element => {
     const { children, text, sx, id } = props;
-    const [open, setOpen] = useState(() => { 
-        console.log("setting initial state")
-        return false});
+    const [open, setOpen] = useState<boolean>(false);
 
     return (
         <Card
