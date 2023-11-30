@@ -77,8 +77,12 @@ export const ShowDetails = () => {
                 gap: 2
             }}>
                 <Row text="Genre" value={show.show.genres} />
-                <Row text="Country" value={show.show.network.country.name} />
-                <Row text="Network" value={show.show.network.name} />
+                {show.show.network &&
+                    <>
+                        <Row text="Country" value={show.show.network.country.name} />
+                        <Row text="Network" value={show.show.network.name} />
+                    </>
+                }
                 <Row text="Started" value={show.show.premiered} />
                 <Row text="Ended" value={show.show.ended} />
                 {show.show.officialSite && <Link href={show.show.officialSite} >Official Website</Link>}
